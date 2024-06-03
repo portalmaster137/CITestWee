@@ -2,33 +2,15 @@ pipeline {
     agent any
     
     stages {
-        stage('Stage 1') {
+        stage('Checkout') {
             steps {
-                echo 'Running Stage 1'
+                git branch: 'main', url: 'https://github.com/portalmaster137/CITestWee.git'
             }
         }
-        
-        stage('Stage 2') {
+
+        stage('Build') {
             steps {
-                echo 'Running Stage 2, oh baby. eee'
-            }
-        }
-        
-        stage('Stage 3') {
-            steps {
-                echo 'Running Stage 3'
-            }
-        }
-        
-        stage('Stage 4') {
-            steps {
-                echo 'Running Stage 4'
-            }
-        }
-        
-        stage('Stage 5') {
-            steps {
-                echo 'Running Stage 5'
+                sh 'mvn clean package'
             }
         }
     }
